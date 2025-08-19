@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FWDstudio — Full‑Stack Web Developer</title>
+  <meta name="description" content="FWDstudio: Full‑stack web development, product design, and scalable systems. High‑impact websites and apps with professional ethics." />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230e3f68'/%3E%3Ctext x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-family='Verdana' font-size='28' fill='%23fff'%3EF%3C/text%3E%3C/svg%3E">
+
+  <!-- TailwindCSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['Poppins', 'ui-sans-serif', 'system-ui', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial'],
+            sans: ['Inter', 'ui-sans-serif', 'system-ui']
+          },
+          colors: {
+            brand: {
+              50: '#eef9ff',
+              100: '#d8f0ff',
+              200: '#b9e5ff',
+              300: '#8bd6ff',
+              400: '#55c0ff',
+              500: '#1ea5ff',
+              600: '#0f82d6',
+              700: '#0f66a7',
+              800: '#0f4f82',
+              900: '#0e3f68'
+            }
+          },
+          boxShadow: {
+            glow: '0 0 0 1px rgba(255,255,255,0.12), 0 10px 40px -10px rgba(30,165,255,0.45)'
+          },
+          backgroundImage: {
+            mesh: "radial-gradient(1200px 600px at 10% -10%, rgba(30,165,255,0.20), transparent 60%), radial-gradient(1000px 600px at 90% 10%, rgba(168,85,247,0.15), transparent 60%), radial-gradient(600px 400px at 50% 110%, rgba(34,197,94,0.15), transparent 60%)"
+          },
+          animation: {
+            float: 'float 6s ease-in-out infinite',
+            fadeUp: 'fadeUp .8s ease forwards'
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0)' },
+              '50%': { transform: 'translateY(-6px)' }
+            },
+            fadeUp: {
+              '0%': { opacity: 0, transform: 'translateY(12px)' },
+              '100%': { opacity: 1, transform: 'translateY(0)' }
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    .noise { position: fixed; inset: 0; pointer-events:none; opacity:.03; background-image:url('data:image/svg+xml;utf8,\
+      <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">\
+        <filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="2" stitchTiles="stitch"/></filter>\
+        <rect width="100%" height="100%" filter="url(%23n)" opacity="0.25"/>\
+      </svg>'); mix-blend-mode: overlay }
+    .blur-card{ backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px) }
+    .section { scroll-margin-top: 96px }
+    img.lazy { filter:saturate(1.02) contrast(1.05) }
+  </style>
+</head>
+
+<body class="bg-black text-white selection:bg-brand-500/30 selection:text-white">
+  <div class="noise" aria-hidden="true"></div>
+  <!-- Top Banner -->
+  <div class="bg-gradient-to-r from-brand-500/10 via-white/5 to-fuchsia-500/10 text-white/80 text-xs md:text-sm px-3 md:px-6 py-2 flex items-center justify-center gap-2">
+    <span class="relative flex h-2 w-2"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span><span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-400"></span></span>
+    <span>Open for new projects — quick start available</span>
+  </div>
+
+  <!-- NAV -->
+  <header class="sticky top-0 z-50 backdrop-blur supports-[backdrop-filter]:bg-black/40 border-b border-white/5">
+    <nav class="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <a href="#home" class="group inline-flex items-center gap-2">
+        <div class="w-9 h-9 grid place-items-center rounded-xl bg-white/5 ring-1 ring-white/10 shadow-glow">
+         <svg width="35" height="35" viewBox="0 0 24 24" class="group-hover:animate-float">
+  <image href="images/ChatGPT Image Aug 17, 2025, 03_44_36 PM.png" 
+         x="-2" y="-2" width="28" height="28" preserveAspectRatio="xMidYMid meet" />
+</svg>
+
+        </div>
+        <span class="font-black tracking-tight font-display text-xl">FWD<span class="text-brand-400">studio</span></span>
+      </a>
+
+      <div class="hidden md:flex items-center gap-6 text-sm text-white/70">
+        <a href="#services" class="hover:text-white transition">Services</a>
+        <a href="#work" class="hover:text-white transition">Work</a>
+        <a href="#about" class="hover:text-white transition">About</a>
+        <a href="#contact" class="hover:text-white transition">Contact</a>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <button id="themeBtn" class="text-xs md:text-sm px-3 py-2 rounded-xl border border-white/10 hover:border-white/20 bg-white/5 hover:bg-white/10 transition">Toggle Theme</button>
+        <a href="#contact" class="text-xs md:text-sm px-4 py-2 rounded-xl bg-brand-500 hover:bg-brand-400 text-black font-semibold shadow-glow transition">Reach Out</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section id="home" class="section bg-mesh">
+    <div class="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 pt-16 md:pt-24 pb-24 md:pb-36">
+      <p class="text-xs md:text-sm uppercase tracking-[0.2em] text-white/60">FWDstudio • Full‑Stack web development</p>
+      <h1 class="mt-5 leading-[0.9] text-[12vw] md:text-[9vw] lg:text-[7.5vw] font-black font-display tracking-tight">
+        <span class="block text-white">PROFESSIONAL</span>
+        <span class="block text-white/90">ETHICS</span>
+        <span class="block"><span class="px-3 -mx-3 rounded-xl bg-white/5 ring-1 ring-white/10">MAKE</span> <span class="text-brand-400">FWDstudio</span></span>
+      </h1>
+      <p class="max-w-2xl mt-6 text-white/70 text-base md:text-lg">I craft performant, accessible, and beautiful web apps—from concept to deployment. Typesafe APIs, modern frontends, and pixel‑perfect interfaces that move business metrics.</p>
+
+      <div class="mt-10 flex flex-wrap items-center gap-3">
+        <a href="#contact" class="px-5 py-3 rounded-xl bg-white text-black font-semibold hover:bg-white/90 transition shadow-glow">Let’s build something</a>
+        <a href="#work" class="px-5 py-3 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20 transition">See signature work</a>
+        <div class="flex items-center gap-2 text-white/60 text-sm">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 3v18M3 12h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <span>Next.js · Node · React · Tailwind · Postgres · AWS</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services" class="section relative py-20 md:py-28">
+    <div class="absolute inset-0 pointer-events-none opacity-30" aria-hidden="true">
+      <div class="absolute -top-20 -left-10 w-72 h-72 bg-brand-500 blur-[100px] rounded-full"></div>
+      <div class="absolute bottom-0 right-0 w-96 h-96 bg-fuchsia-500 blur-[120px] rounded-full"></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
+      <div class="flex items-end justify-between gap-6">
+        <h2 class="text-3xl md:text-5xl font-black font-display tracking-tight">Let’s design a <span class="text-white/70">professional</span>, <span class="text-brand-400">game‑changing</span> digital experience</h2>
+        <span class="hidden md:inline text-white/50">Services</span>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-6 mt-10">
+        <!-- Card 1 -->
+        <article class="blur-card border border-white/10 bg-white/5 rounded-2xl p-6 md:p-8 hover:bg-white/[0.08] transition shadow-glow">
+          <h3 class="text-xl md:text-2xl font-semibold">Full‑Stack Web Development</h3>
+          <p class="text-white/70 mt-2">SEO‑friendly frontends, typesafe backends, and scalable infra. I ship with CI/CD, observability, and rigorous testing.</p>
+          <ul class="mt-4 space-y-2 text-white/70 text-sm">
+            <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-emerald-400"></span>Next.js / React / Tailwind</li>
+            <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-emerald-400"></span>Node / Express / tRPC / GraphQL</li>
+            <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-emerald-400"></span>Postgres / Prisma / Redis</li>
+          </ul>
+        </article>
+
+        <!-- Card 2 -->
+        <article class="blur-card border border-white/10 bg-white/5 rounded-2xl p-6 md:p-8 hover:bg-white/[0.08] transition">
+          <h3 class="text-xl md:text-2xl font-semibold">UI / UX Design</h3>
+          <p class="text-white/70 mt-2">Clean aesthetics with conversion‑focused flows. I prototype quickly and deliver dev‑ready design systems.</p>
+          <ul class="mt-4 space-y-2 text-white/70 text-sm">
+            <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-emerald-400"></span>Design systems & component libraries</li>
+            <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-emerald-400"></span>Rapid prototyping & user testing</li>
+            <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-emerald-400"></span>Micro‑interactions & motion</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- SIGNATURE WORK -->
+  <section id="work" class="section py-20 md:py-28 bg-white/[0.03] border-y border-white/5">
+    <div class="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
+      <div class="flex items-end justify-between gap-6">
+        <h2 class="text-3xl md:text-5xl font-black font-display tracking-tight">My Projects</h2>
+        <a href="#contact" class="hidden md:inline px-4 py-2 rounded-xl bg-brand-500 text-black font-semibold shadow-glow">Work with FWDstudio</a>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8 mt-10">
+        <!-- Project 1 -->
+        <article class="group border border-white/10 rounded-2xl overflow-hidden bg-white/5 hover:bg-white/10 transition">
+          <a href="#" class="block relative aspect-[16/10] overflow-hidden">
+            <img class="w-full h-full object-cover lazy" loading="lazy" src="images/265514115-7d54c3f1-656d-471b-860d-4880cd93e415.png" alt="iWeb – customizable browser hub screenshot" />
+          </a>
+          <div class="p-6">
+            <div class="flex items-center justify-between">
+              <h3 class="text-xl md:text-2xl font-semibold">TAATA - create your emotions!</h3>
+              <span class="text-xs px-2 py-1 rounded-lg bg-white/10">Open‑source</span>
+            </div>
+            <p class="text-white/70 mt-2">Fast food ordering web app with a focus on user experience and customization.</p>
+            <p class="mt-3 text-xs text-white/50">HTML, CSS, JS</p>
+            <div class="mt-4 flex flex-wrap gap-2 text-xs">
+              <span class="px-2 py-1 rounded-lg bg-brand-500/20 border border-brand-500/30">Performance</span>
+              <span class="px-2 py-1 rounded-lg bg-fuchsia-500/20 border border-fuchsia-500/30">Customization</span>
+              <span class="px-2 py-1 rounded-lg bg-emerald-400/20 border border-emerald-400/30">Productivity</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Project 2 -->
+        <article class="group border border-white/10 rounded-2xl overflow-hidden bg-white/5 hover:bg-white/10 transition">
+          <a href="#" class="block relative aspect-[16/10] overflow-hidden">
+            <img class="w-full h-full object-cover lazy" loading="lazy" src="images/Screenshot 2025-08-16 220239.png" alt="Sprintora – P2P sharing app screenshot" />
+          </a>
+          <div class="p-6">
+            <div class="flex items-center justify-between">
+              <h3 class="text-xl md:text-2xl font-semibold">Travel - Explore the World</h3>
+              <span class="text-xs px-2 py-1 rounded-lg bg-white/10">open-source</span>
+            </div>
+            <p class="text-white/70 mt-2">Travel planning website that helps users discover and book their next adventure with ease.</p>
+            <p class="mt-3 text-xs text-white/50">React, Node, WebRTC, Professional UI</p>
+            <div class="mt-4 flex flex-wrap gap-2 text-xs">
+              <span class="px-2 py-1 rounded-lg bg-emerald-400/20 border border-emerald-400/30">Real‑time</span>
+              <span class="px-2 py-1 rounded-lg bg-brand-500/20 border border-brand-500/30">Scalable</span>
+              <span class="px-2 py-1 rounded-lg bg-fuchsia-500/20 border border-fuchsia-500/30">UI-UX</span>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <div class="mt-10 flex justify-center">
+        <a href="#contact" class="px-6 py-3 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20 transition">Get to know us</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="section py-20 md:py-28">
+    <div class="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-3 gap-8 items-start">
+        <div class="lg:col-span-2">
+          <h2 class="text-3xl md:text-5xl font-black font-display tracking-tight">Beyond Code: Craft, Care, and Clear Communication</h2>
+          <p class="text-white/70 mt-6"></p>
+          <div class="mt-8 grid sm:grid-cols-2 gap-4">
+            <div class="p-5 rounded-2xl bg-white/5 border border-white/10">
+              <h3 class="font-semibold">Guaranteed Core Outcomes</h3>
+              <ul class="mt-3 space-y-2 text-white/70 text-sm list-disc list-inside">
+                <li>SEO‑ready pages under 1s LCP</li>
+                <li>Accessible UI (WCAG AA)</li>
+                <li>CI/CD + staging preview</li>
+              </ul>
+            </div>
+            <div class="p-5 rounded-2xl bg-white/5 border border-white/10">
+              <h3 class="font-semibold">Tech Stack</h3>
+              <ul class="mt-3 space-y-2 text-white/70 text-sm list-disc list-inside">
+                <li>Next.js, React, Vite</li>
+                <li>Node, Express, tRPC, GraphQL</li>
+                <li>Postgres, Prisma, Redis</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="p-6 rounded-2xl bg-white/5 border border-white/10">
+          <h3 class="font-semibold">What i say</h3>
+          <p class="text-white/70 mt-3">“FWDstudio delivered a polished product ahead of schedule. Performance and design exceeded expectations.”</p>
+          <div class="mt-6 flex items-center gap-3 text-sm text-white/60">
+            <img src="images/ChatGPT Image Aug 17, 2025, 01_04_12 PM.png" alt="Farhan" class="w-8 h-8 rounded-full object-cover" />
+
+            <div>
+              <div class="font-medium text-white/80">Startup Founder</div>
+              <div>Farhan, India</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+
+
+
+
+
+
+
+
+<!-- Contact Section -->
+<section id="contact" class="py-20">
+  <div class="max-w-5xl mx-auto px-6 text-center">
+    <h2 class="text-3xl md:text-4xl font-bold">Up for a chat? Let’s talk!</h2>
+    <p class="text-white/60 mt-3 max-w-2xl mx-auto">
+      Whether you’re building something new or improving what’s already there, I’m open to discussing ideas, collaborations, or opportunities.
+    </p>
+
+    <!-- Working Form with Formspree -->
+    <form id="contactForm"
+          action="https://formspree.io/f/mpwleple"
+          method="POST"
+          class="mx-auto mt-8 grid sm:grid-cols-2 gap-4 max-w-3xl text-left">
+
+      <!-- Hidden subject -->
+      <input type="hidden" name="_subject" value="New portfolio inquiry!" />
+
+      <div class="sm:col-span-1">
+        <label for="name" class="block text-sm font-medium text-white/70">Your Name</label>
+        <input type="text" id="name" name="name" required
+               class="mt-1 w-full rounded-xl bg-white/5 border border-white/10 p-3 focus:ring-2 focus:ring-brand-500 focus:outline-none" />
+      </div>
+
+      <div class="sm:col-span-1">
+        <label for="email" class="block text-sm font-medium text-white/70">Your Email</label>
+        <input type="email" id="email" name="email" required
+               class="mt-1 w-full rounded-xl bg-white/5 border border-white/10 p-3 focus:ring-2 focus:ring-brand-500 focus:outline-none" />
+      </div>
+
+      <div class="sm:col-span-2">
+        <label for="message" class="block text-sm font-medium text-white/70">Your Message</label>
+        <textarea id="message" name="message" rows="5" required
+                  class="mt-1 w-full rounded-xl bg-white/5 border border-white/10 p-3 focus:ring-2 focus:ring-brand-500 focus:outline-none"></textarea>
+      </div>
+
+      <div class="sm:col-span-2 flex justify-center">
+        <button type="submit"
+                class="px-6 py-3 rounded-xl bg-brand-500 text-black font-semibold shadow-glow hover:bg-brand-400 transition">
+          Send Message
+        </button>
+      </div>
+    </form>
+
+    <!-- Success/Error Message -->
+    <div id="formStatus" class="mt-4 text-sm text-center hidden"></div>
+  </div>
+</section>
+
+<!-- Formspree Script -->
+<script>
+  const form = document.getElementById("contactForm");
+  const statusDiv = document.getElementById("formStatus");
+
+  form.addEventListener("submit", async function(event) {
+    event.preventDefault();
+    const data = new FormData(form);
+
+    try {
+      const response = await fetch(form.action, {
+        method: form.method,
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (response.ok) {
+        statusDiv.textContent = "✅ Thank you! Your message has been sent successfully.";
+        statusDiv.className = "mt-4 text-green-400 text-sm text-center";
+        form.reset();
+      } else {
+        statusDiv.textContent = "❌ Oops! Something went wrong. Please try again.";
+        statusDiv.className = "mt-4 text-red-400 text-sm text-center";
+      }
+    } catch (error) {
+      statusDiv.textContent = "⚠️ Network error. Please check your connection and try again.";
+      statusDiv.className = "mt-4 text-red-400 text-sm text-center";
+    }
+
+    statusDiv.classList.remove("hidden");
+  });
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <!-- FOOTER -->
+  <footer class="py-10 text-center text-white/60 text-sm">
+    <div class="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+        <p>© <span id="year"></span> FWDstudio. Built with professional ethics.</p>
+        <div class="flex items-center gap-3">
+          <a href="#home" class="px-3 py-2 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10">Back to top</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    // year
+    document.getElementById('year').textContent = new Date().getFullYear()
+
+    // theme toggle (dark <-> dim)
+    document.getElementById('themeBtn').addEventListener('click', () => {
+      document.body.classList.toggle('bg-neutral-950')
+    })
+
+    // copy email
+    document.getElementById('copyEmail').addEventListener('click', async () => {
+      const email = 'hello@fwdstudio.dev' // <-- change to your email
+      try {
+        await navigator.clipboard.writeText(email)
+        const btn = document.getElementById('copyEmail')
+        const prev = btn.textContent
+        btn.textContent = 'Copied ✓'
+        setTimeout(() => (btn.textContent = prev), 1500)
+      } catch (e) {
+        alert('Email: ' + email)
+      }
+    })
+
+    // basic scroll reveal
+    const revealEls = document.querySelectorAll('section .blur-card, section article, section h2')
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          e.target.classList.add('animate-fadeUp')
+          io.unobserve(e.target)
+        }
+      })
+    }, { threshold: .12 })
+    revealEls.forEach((el) => io.observe(el))
+
+    // Working mailto fallback if no backend endpoint
+    document.getElementById('contactForm').addEventListener('submit', (ev) => {
+      ev.preventDefault()
+      const fd = new FormData(ev.target)
+      const qp = new URLSearchParams()
+      for (const [k, v] of fd.entries()) qp.append(k, v)
+      const subject = encodeURIComponent('New inquiry — ' + (fd.get('name') || ''))
+      const body = encodeURIComponent(
+        `Name: ${fd.get('name')}
+Email: ${fd.get('email')}
+Company: ${fd.get('company') || '-'}
+Type: ${fd.get('type')}
+
+${fd.get('message')}`
+      )
+      window.location.href = `mailto:hello@fwdstudio.dev?subject=${subject}&body=${body}` // <-- set your email
+    })
+  </script>
+</body>
+</html>
